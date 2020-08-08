@@ -19,7 +19,7 @@ export default {
   name: 'App',
   data: () => ({
     navTabs: {
-      currentTab: 'BinanceSnapshot',
+      currentTab: 'DiffList',
       tabs: [
           {component: 'BinanceSnapshot', tabName: 'Binance Snapshot'},
           {component: 'DiffList', tabName: 'Diff List'},

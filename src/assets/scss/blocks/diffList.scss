@@ -1,0 +1,48 @@
+.diff-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  &__event-log,
+  &__select-symbol {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .7rem;
+  }
+
+  &__event-container {
+    display: flex;
+    flex-direction: column-reverse;
+
+
+    > li {
+      list-style: disc;
+      line-height: $navbar-height;
+      border-bottom: 1px solid $medium-color;
+    }
+
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    color: $dark-color;
+    font-weight: bold;
+    margin-bottom: .7rem;
+  }
+
+
+
+  &__select {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    font-family: 'Open Sans', 'Helvetica Neue', 'Segoe UI', 'Calibri', 'Arial', sans-serif;
+    font-size: 1rem;
+    color: $accent-color;
+  }
+}
