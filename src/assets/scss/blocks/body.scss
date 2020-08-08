@@ -1,0 +1,19 @@
+*,*:before,*:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a:active,
+a:hover,
+a {
+  color: $dark-color;
+  text-decoration: none;
+  transition: all 0.3s linear 0s;
+}
+
+
+

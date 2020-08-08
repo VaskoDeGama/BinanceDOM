@@ -1,0 +1,117 @@
+.header {
+
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: $bg-color;
+  box-shadow:0 2px 2px rgba(0,0,0,.35);
+
+  &__title {
+    padding-left: 30px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    @media (max-width: $title-collapse-breakpoint) {
+      display: none;
+    }
+
+  }
+
+  &__links {
+    display: none;
+    flex-flow: row nowrap;
+    align-items: center;
+    white-space: nowrap;
+
+    @media (min-width: $navbar-collapse-breakpoint) {
+      display: flex;
+    }
+
+    @media (max-width: $navbar-collapse-breakpoint) {
+      position: fixed;
+      top: $navbar-height;
+      left: 0;
+      width: 100%;
+      overflow-y: hidden;
+      overflow-x: auto;
+      border-bottom: $navbar-item-border-width solid $bg-color ;
+      background-color: $bg-color;
+      box-shadow:0 2px 2px rgba(0,0,0,.35);
+    }
+
+    &--on {
+      display: flex;
+    }
+  }
+
+  &__link {
+    flex-shrink: 0;
+    height: $navbar-height;
+    line-height: ($navbar-height + $navbar-item-border-width);
+    padding-left: round(($navbar-height - 20) / 2);
+    padding-right: round(($navbar-height - 20) / 2);
+    text-transform: uppercase;
+    border-bottom: $navbar-item-border-width solid $bg-color ;
+    font-weight: bold;
+
+
+    &--active,
+    &:hover,
+    &:active{
+      color: $accent-color;
+      border-color: $accent-color;
+    }
+
+  }
+
+  &__toggle {
+    border: 0;
+    background-color: transparent;
+    outline: none;
+    background-image: none;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    padding: round(($navbar-height - 20) / 2);
+
+    @media (min-width: $navbar-collapse-breakpoint) {
+      display: none;
+    }
+  }
+
+  &__icon {
+    position: relative;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    &,
+    &:before,
+    &:after {
+      display: block;
+      width: 24px;
+      height: 3px;
+      transition: background-color 0.3s linear, transform 0.3s linear;
+      background-color: #555555;
+    }
+    &:before, &:after { position: absolute; content: ""; }
+    &:before { top: -8px; }
+    &:after { top: 8px; }
+
+    &--active {
+      background-color: transparent;
+      &:before { transform: translateY(8px) rotate(45deg); }
+      &:after { transform: translateY(-8px) rotate(-45deg); }
+    }
+  }
+
+
+  @media (min-width: 768px) {  }
+  @media (min-width: 992px) {  }
+  @media (min-width: 1200px) {  }
+}
