@@ -1,0 +1,25 @@
+.binance-snapshot {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+
+  &__symbol-type {
+    font-size: 1.5rem;
+    color: $dark-color;
+    font-weight: bold;
+    margin-bottom: .7rem;
+  }
+
+  &__wrapper{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+
+    @media (max-device-width: $title-collapse-breakpoint) {
+      flex-direction: column;
+    }
+  }
+}
+

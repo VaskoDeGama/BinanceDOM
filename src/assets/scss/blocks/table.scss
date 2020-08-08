@@ -1,0 +1,35 @@
+.tableContainer {
+  height: calc(100vh - 100px);
+  overflow: auto;
+  width: $table-max-width;
+  padding: 0 5px;
+  margin-bottom: .7rem;
+}
+
+.table {
+  border-collapse: collapse;
+  border: 2px solid $light-color;
+  width: 100%;
+  background-color: $bg-color;
+  text-align: center;
+
+  &__caption {
+    background-color: $light-color;
+    padding: 3px;
+  }
+
+  &__row > th, td {
+    border: 1px solid $light-color;
+    padding: 10px 15px;
+  }
+
+  &__row {
+    width: $table-row-height;
+
+    @media (max-device-width: $navbar-collapse-breakpoint) {
+      &--hidden {
+        display: none;
+      }
+    }
+  }
+}
