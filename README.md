@@ -1,4 +1,3 @@
-# testtask
 
 ## Project setup
 ```
