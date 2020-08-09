@@ -11,7 +11,7 @@ import './assets/js/app.js'
 Vue.config.productionTip = false
 Vue.use(appCore)
 Vue.registerPlugin(api, {
-  baseURL: process.env.BINANCE_URL || 'http://localhost:8080/'
+  baseURL: process.env.BINANCE_URL || 'https://api.binance.com/'
 })
 Vue.registerPlugin(eventBus)
 Vue.registerPlugin(sdk)
