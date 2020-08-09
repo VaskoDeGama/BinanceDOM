@@ -1054,6 +1054,7 @@ export default {
     this.$bus.$on('changeSymbol', ({symbol}) => {
       this.symbol = symbol
     })
+    this.$get(this.symbol, 500)
   }
 }
 </script>

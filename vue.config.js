@@ -13,6 +13,7 @@ module.exports = {
     }
   },
   devServer: {
+    proxy: 'https://api.binance.com/',
     overlay: {
       warnings: false,
       errors: true
