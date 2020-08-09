@@ -12,7 +12,7 @@ export const timeToFormat = (date) => {
 export const decimalToFormat = (num) => {
   return new Intl.NumberFormat('ru-RU', {
     style: 'decimal',
-    maximumFractionDigits: '3'
+    maximumFractionDigits: '5'
   }).format(num);
 }
 
