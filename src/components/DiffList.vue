@@ -2,13 +2,15 @@
   <section class="diff-list">
     <div class="diff-list__event-log">
       <h3 class="diff-list__title">Even bus log:</h3>
-      <ul v-if="logs.length > 0" class="diff-list__event-container">
-        <li
-            v-for="(log, index) in logs"
-            :key="'log-' + index"
-        >{{log}}</li>
-      </ul>
-      <span v-else>There are no logs yet</span>
+      <div class="diff-list__log-container">
+        <ul v-if="logs.length > 0" class="diff-list__event-container">
+          <li
+              v-for="(log, index) in logs"
+              :key="'log-' + index"
+          >{{log.date}}</li>
+        </ul>
+        <span v-else>There are no logs yet</span>
+      </div>
     </div>
     <div class="diff-list__select-symbol">
       <h3 class="diff-list__title" >Current symbol: {{currentSymbol}} </h3>
@@ -47,9 +49,11 @@ export default {
   }),
   mounted() {
     this.$bus.$on('changeSymbol', ({type}) => {
-      this.logs.push(`${timeToFormat(Date.now())}: Action Type: ${type}`)
+      this.logs.push({type, date: timeToFormat(Date.now())})
     })
-
+    this.$bus.$on('diff', (data) => {
+      this.logs.push({...data, date: timeToFormat(Date.now())})
+    })
   },
   watch: {
     currentSymbol(symbol) {

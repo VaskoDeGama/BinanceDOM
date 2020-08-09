@@ -1,8 +1,6 @@
 .diff-list {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-content: flex-start;
   align-items: center;
 
   &__event-log,
@@ -16,14 +14,22 @@
     margin-bottom: .7rem;
   }
 
+  &__log-container {
+    overflow-y: scroll;
+    height: 75vh;
+    width: 100%;
+  }
+
+  &__select-symbol {
+    align-self: start;
+  }
+
 
   &__event-container {
     display: flex;
     flex-direction: column-reverse;
 
-
     > li {
-      list-style: disc;
       line-height: $navbar-height;
       border-bottom: 1px solid $medium-color;
     }
