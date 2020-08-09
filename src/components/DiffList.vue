@@ -21,7 +21,7 @@
               v-for="(log, index) in logs"
               :key="'log-' + index"
           >
-            <p>Time Stamp: <span>{{log.date}}</span> Symbol: <span>{{currentSymbol}}</span></p>
+            <p>Time Stamp: <span>{{log.date}}</span> Symbol: <span>{{log.symbol}}</span></p>
             <p> Ask: avgPRICE: <span>{{log.ask.avgPrice}}</span> avgAmount: <span>{{log.ask.avgAmount}}</span> changes: <span>{{log.ask.changeCount}}</span> </p>
             <p> Bid: avgPRICE: <span>{{log.bid.avgPrice}}</span> avgAmount: <span>{{log.bid.avgAmount}}</span> changes: <span>{{log.ask.changeCount}}</span>  </p>
           </li>
@@ -48,10 +48,11 @@ export default {
     //   this.logs.push({type, date: timeToFormat(Date.now())})
     // })
     this.$bus.$on('diff', (data) => {
-      const {asksAdd, bidsAdd, type} = data
+      const {asksAdd, bidsAdd, type, symbol} = data
       const ask = getAvg(asksAdd)
       const bid = getAvg(bidsAdd)
       const log = {
+        symbol,
         ask: {...ask},
         bid: {...bid},
         type: type,

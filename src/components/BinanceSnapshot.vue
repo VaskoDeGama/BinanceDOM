@@ -54,8 +54,9 @@ export default {
           this.snapshot.asks = [...this.snapshot.asks, ...asksAdd].reverse()
           this.snapshot.bids = [...this.snapshot.bids, ...bidsAdd].reverse()
         }
+        const symbol = this.symbol
 
-        this.$bus.$emit('diff', {type: 'diff', asksAdd, bidsAdd})
+        this.$bus.$emit('diff', {type: 'diff', asksAdd, bidsAdd,symbol})
       }
 
     }
