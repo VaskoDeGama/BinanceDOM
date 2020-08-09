@@ -36,6 +36,10 @@
     border: 1px solid $light-color;
     padding: 5px;
     width: 100%;
+
+    @media (max-device-width: $navbar-collapse-breakpoint) {
+      font-size: .7rem;
+    }
   }
 
   &__row {
