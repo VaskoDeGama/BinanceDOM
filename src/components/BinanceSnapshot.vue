@@ -1,6 +1,6 @@
 <template>
   <section class="binance-snapshot">
-    <h2 class="binance-snapshot__symbol-type">Symbol type: BTCUSDT</h2>
+    <h2 class="binance-snapshot__symbol-type">Symbol type: {{ symbol }}</h2>
     <div class="binance-snapshot__wrapper">
 
       <div class="tableContainer">
@@ -1044,5 +1044,16 @@
 <script>
 export default {
   name: 'BinanceSnapshot',
+  data: () => ({
+    symbol: 'BTCUSDT'
+  }),
+  methods: {
+
+  },
+  mounted: function () {
+    this.$bus.$on('changeSymbol', ({symbol}) => {
+      this.symbol = symbol
+    })
+  }
 }
 </script>

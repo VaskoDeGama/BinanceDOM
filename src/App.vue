@@ -19,7 +19,7 @@ export default {
   name: 'App',
   data: () => ({
     navTabs: {
-      currentTab: 'DiffList',
+      currentTab: 'BinanceSnapshot',
       tabs: [
           {component: 'BinanceSnapshot', tabName: 'Binance Snapshot'},
           {component: 'DiffList', tabName: 'Diff List'},
@@ -29,7 +29,10 @@ export default {
   computed: {
     currentComponent() {
       return this.navTabs.currentTab
-    }
+    },
+  },
+  created() {
+
   },
   components: {
     NavBar,
