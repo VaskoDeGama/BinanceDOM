@@ -15,6 +15,7 @@
 <script>
 import Table from './Table'
 import PreLoader from './PreLoader'
+import {updateLevel} from '@/utils'
 
 export default {
   name: 'BinanceSnapshot',
@@ -23,7 +24,8 @@ export default {
     symbol: 'BTCUSDT',
     snapshot: {
       bids: null,
-      asks: null
+      asks: null,
+      lastUpdateId: null
     },
     socket: null
   }),
@@ -31,10 +33,12 @@ export default {
   methods: {
     async getSnapshot() {
       try {
-        const response = await this.$get(this.symbol)
-        const {asks, bids} = response.data
+        const response = await this.$get(this.symbol, 100)
+        const {bids, asks, lastUpdateId} = response.data
         this.snapshot.asks = asks.reverse()
         this.snapshot.bids = bids.reverse()
+        this.snapshot.lastUpdateId = lastUpdateId
+
       } catch (e) {
         console.log(e)
       }
@@ -42,21 +46,28 @@ export default {
     socketSubscribe() {
       this.socket = this.$subscribe(this.symbol)
       this.socket.onmessage = event => {
-        const data = JSON.parse(event.data)
 
-        const [asksAdd, bidsAdd] = [
+        const data = JSON.parse(event.data)
+        if(this.snapshot.lastUpdateId <= data['u']) {
+          const [asksAdd, bidsAdd] = [
             data.a.filter(item => item[1] != 0),
             data.b.filter(item => item[1] != 0)
-        ]
-        if(this.snapshot.asks || this.snapshot.bids ) {
-          this.snapshot.asks.splice(this.snapshot.asks.length - asksAdd.length, asksAdd.length)
-          this.snapshot.bids.splice(this.snapshot.bids.length - bidsAdd.length, bidsAdd.length)
-          this.snapshot.asks = [...this.snapshot.asks, ...asksAdd].reverse()
-          this.snapshot.bids = [...this.snapshot.bids, ...bidsAdd].reverse()
-        }
-        const symbol = this.symbol
+          ]
 
-        this.$bus.$emit('diff', {type: 'diff', asksAdd, bidsAdd,symbol})
+          const newAsks = updateLevel(this.snapshot.asks, asksAdd.reverse())
+          const newBids = updateLevel(this.snapshot.bids, bidsAdd.reverse())
+          this.snapshot = {
+            ...this.snapshot,
+            asks: newAsks,
+            bids: newBids,
+            lastUpdateId: data['u']
+
+          }
+
+          const symbol = this.symbol
+          this.$bus.$emit('diff', {type: 'diff', asksAdd, bidsAdd,symbol})
+        }
+
       }
 
     }

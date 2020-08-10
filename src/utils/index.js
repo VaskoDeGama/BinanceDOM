@@ -18,15 +18,22 @@ export const decimalToFormat = (num) => {
 
 export const getAvg = (array) => {
   const changeCount = array.length
-  const sums = array.reduce(( sums,[price,amount]) => {
-    return {
-      price: sums.price + +price,
-      amount: sums.amount + +amount,
-    }
-  }, {price: 0, amount: 0} )
+  const [priceStart] = array[0]
+  const [priceEnd] = array[changeCount - 1]
+  const sums = {
+    price: +priceEnd - +priceStart,
+
+  }
   return {
-    avgPrice: decimalToFormat( sums.price / changeCount),
-    avgAmount: decimalToFormat (sums.amount / changeCount),
+    avgPrice: decimalToFormat( sums.price ),
     changeCount
   }
+}
+
+
+
+
+
+export const updateLevel = (currentLevel, changes) => {
+  return [...changes, ...currentLevel.slice(0, currentLevel.length - changes.length), ]
 }
