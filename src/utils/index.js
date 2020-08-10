@@ -21,7 +21,7 @@ export const getAvg = (array) => {
   const [priceStart] = array[0]
   const [priceEnd] = array[changeCount - 1]
   const sums = {
-    price: +priceEnd - +priceStart,
+    price: +priceStart - +priceEnd ,
 
   }
   return {
