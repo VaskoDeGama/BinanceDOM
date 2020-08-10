@@ -30,10 +30,6 @@ export const getAvg = (array) => {
   }
 }
 
-
-
-
-
 export const updateLevel = (currentLevel, changes) => {
-  return [...changes, ...currentLevel.slice(0, currentLevel.length - changes.length), ]
+  return [...changes, ...currentLevel.slice(0, currentLevel.length - changes.length) ]
 }

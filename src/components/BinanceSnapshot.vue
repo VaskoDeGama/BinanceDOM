@@ -33,7 +33,7 @@ export default {
   methods: {
     async getSnapshot() {
       try {
-        const response = await this.$get(this.symbol, 100)
+        const response = await this.$get(this.symbol, 500)
         const {bids, asks, lastUpdateId} = response.data
         this.snapshot.asks = asks.reverse()
         this.snapshot.bids = bids.reverse()
@@ -53,7 +53,6 @@ export default {
             data.a.filter(item => item[1] != 0),
             data.b.filter(item => item[1] != 0)
           ]
-
           const newAsks = updateLevel(this.snapshot.asks, asksAdd.reverse())
           const newBids = updateLevel(this.snapshot.bids, bidsAdd.reverse())
           this.snapshot = {
